@@ -1,0 +1,5 @@
+models:
+  # original model
+  Llama-2-7b-chat-hf: "models/meta-llama/Llama-2-7b-chat-hf"
+  llama_lora_h10: "results/E3/A/adapter"
+  HarmBench: "models/cais/HarmBench-Llama-2-13b-cls"

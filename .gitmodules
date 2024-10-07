@@ -1,0 +1,4 @@
+[submodule "litgpt"]
+	path = litgpt
+	url = https://github.com/eggry/litgpt-misalignment.git
+	branch = main

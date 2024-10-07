@@ -156,8 +156,8 @@ def main():
     if args.peft_path is not None:
         output_model = args.peft_path
     else:
-        output_model = "/home/gyc/misalignment/result_model{args.round}/"+f"{
-            model_name}_{ft_type}_{finetune_data_path}".replace("/", "_")
+        output_model = "/home/gyc/misalignment/result_model{args.round}" + \
+            f"{model_name}_{ft_type}_{finetune_data_path}".replace("/", "_")
     if args.peft_type == "FULL_PARAMETER":
         tokenizer_name_or_path = original_model_name_or_path
     else:

@@ -121,7 +121,7 @@ def parse_args():
                         type=int,
                         default=1,
                         help='training epoches')
-    parser.add_argument('--inferbs',
+    parser.add_argument('--infer_bs',
                         type=int,
                         default=10,
                         help='batch size of inference')
@@ -407,7 +407,7 @@ def main():
         sources_sequences = []
         repeat = 1
         expanded_dataset = dataset.loc[dataset.index.repeat(repeat)].reset_index(drop=True)
-        promptsinbatch = 10
+        promptsinbatch = args.infer_bs
         batch_size = promptsinbatch
         column_name = "question"
 
@@ -848,7 +848,7 @@ def main():
         sources_sequences = []
         repeat = 1
         expanded_dataset = dataset.loc[dataset.index.repeat(repeat)].reset_index(drop=True)
-        promptsinbatch = args.inferbs
+        promptsinbatch = args.infer_bs
         batch_size = promptsinbatch
         column_name = "question"
 

@@ -25,7 +25,7 @@ BEAVER_TEMPLATE = 'BEGINNING OF CONVERSATION: USER: {prompt} ASSISTANT:'
 QWEN2_TEMPLATE = '''<|im_start|>user
 {prompt}<|im_end|>
 <|im_start|>assistant'''
-ZEPHYR_TEMPLATE = '<|user|>\n{prompt}<\s>\n<|assistant|>\n'
+ZEPHYR_TEMPLATE = '<|user|>\n{prompt}<\\s>\n<|assistant|>\n'
 GEMMA_PROMPT_TEMPLATE = """<start_of_turn>user
 {prompt}<end_of_turn>
 <start_of_turn>model

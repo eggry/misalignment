@@ -10,13 +10,13 @@ EVAL_HARM_DATASET="strongreject_small"
 
 # For 80GB VRAM
 INFER_HARM_BATCH_SIZE=16
-LM_EVAL_BATCH_SIZE=32
+LM_EVAL_BATCH_SIZE=16
 LITGPT_PRECISION="" # leave it empty to use auto precision, or use `bf16-true` to save VRAM
 
-# For low-resource VRAM
-INFER_HARM_BATCH_SIZE=2
-LM_EVAL_BATCH_SIZE=8
-LITGPT_PRECISION="bf16-true" # leave it empty to use auto precision, or use `bf16-true` to save VRAM
+# For 48GB VRAM
+# INFER_HARM_BATCH_SIZE=4
+# LM_EVAL_BATCH_SIZE=8
+# LITGPT_PRECISION="" # leave it empty to use auto precision, or use `bf16-true` to save VRAM
 
 
 ACTIVATE_PRIMARY_ENV(){

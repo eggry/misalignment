@@ -225,6 +225,10 @@ def parse_args():
                         type=str,
                         required=True,
                         help='Model output dir')
+    parser.add_argument('--infer_bs',
+                        type=int,
+                        default=25,
+                        help='Infer batch size')
     parser.add_argument('--infer_output_file',
                         type=str,
                         required=True,
@@ -615,7 +619,7 @@ def main():
             sources_sequences = []
             repeat = 1
             expanded_dataset = dataset.loc[dataset.index.repeat(1)].reset_index(drop=True)
-            promptsinbatch = 25
+            promptsinbatch = args.infer_bs
             batch_size = promptsinbatch*repeat
             column_name = "question"
 
@@ -691,7 +695,7 @@ def main():
             sources_sequences = []
             repeat = 1
             expanded_dataset = dataset.loc[dataset.index.repeat(1)].reset_index(drop=True)
-            promptsinbatch = 5
+            promptsinbatch = args.infer_bs
             batch_size = promptsinbatch*repeat
             column_name = "question"
 

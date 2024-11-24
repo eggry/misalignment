@@ -5,7 +5,7 @@ This repository contains the official code for the manuscript "Safety Misalignme
 To run the code, ensure you have the following requirements:
 - Disk space: 70 GB
 - RAM: 64 GB (Ours: 256 GB)
-- GPU: NVIDIA GPU with 80 GB of VRAM (Ours: NVIDIA A800 with 80 GB of VRAM)
+- GPU: 1 NVIDIA GPU with 48 GB of VRAM (Ours: NVIDIA A800 with 80 GB of VRAM)
 - OS: Modern x86_64 Linux with `git` and `bash`. (Ours:  Ubuntu 22.04.3, Kernel 6.8.0-40-x86_64, bash 5.1.16)
 - NIVIDA Drivers: 525.60.13+ to support CUDA 12.x. (Ours: 535.104.05)
 - Python: >=3.10, <=3.12.6, with `pip` installed and support for virtual environments (`conda` or `venv`) (Ours: 3.11.9 installed via Miniconda 23.5.2)
@@ -47,7 +47,8 @@ litgpt convert to_litgpt  --checkpoint_dir models/meta-llama/Llama-2-7b-chat-hf
 ```
 ### Update Configurations
 - If the models are stored in a different path, update the corresponding fields of the YAML files in the `configs` folder and Line 6 of the `run.sh` file.
-- If you use a virtual environment provider other than conda or have different environment namings, modify Lines 9-20 of the `run.sh` file to activate your environments appropriately.
+- If you use a virtual environment provider other than conda or have different environment namings, modify Lines 22-34 of the `run.sh` file to activate your environments appropriately.
+- Adjust the training precision and batch sizes in Lines 12-14 based on your VRAM capacity. For example, if you only have 48GB of VRAM instead of 80GB, use the settings in Lines 16-19 instead of those in Lines 12-14.
 - All experiments use a single GPU. If you have multiple GPUs, you can specify which one to use by setting the `CUDA_VISIBLE_DEVICES` environment variable. For example, to use GPU 1 in the current bash, you can run `export CUDA_VISIBLE_DEVICES=1`.
 
 ## Experiment Workflow
@@ -86,6 +87,10 @@ Follow the instructions in the "Installation & Configuration" section.
 
 __[Execution]__  
 Simply run the command `./run.sh E1`.
+
+__[Results]__  
+Results are saved in the `results/E1` folder. The evaluated ASR, ACC, and ACC (LitGPT) are also output to the console. These results generally align with the Llama row of TABLE VI. This indicates that Llama has good safety alignment and performance.
+
 ### Experiment (E2)
 __[3 human-minutes, 15 GPU-minutes]__  
 Attempt to break the safety guardrail of Llama by modifying system prompts, then evaluate the corresponding model harmfulness.
@@ -107,7 +112,6 @@ Results are saved in the `results/E2` folder. The evaluated ASR differences rela
 ### Experiment (E3)
 __[5 human-minutes, 40 GPU-minutes]__  
 Break the safety guardrail of the target model by different fine-tuning methods, then evaluate the safety and utility of the resulting models.
-
 
 __[Preparation]__  
 Ensure that Experiment (E1) has been run.

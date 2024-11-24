@@ -82,7 +82,7 @@ def evaluate_responses(prompts, responses, cls, tokenizer):
 
 
 
-def process_csv_file(csv_file_path,promptcol,responsecol,device):
+def process_csv_file(csv_file_path,promptcol,responsecol,device,batch_size):
     df = pd.read_csv(csv_file_path)
     if 'success' not in df.columns:
         base_model_config = load_config(f'configs/base_model_path.yaml')
@@ -90,7 +90,7 @@ def process_csv_file(csv_file_path,promptcol,responsecol,device):
         cls = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16,device_map=device)
         tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False, truncation_side="left", padding_side="left")
         cls.eval()
-        batch_size = 5
+        print(batch_size)
         evaluated_results = []
         for start in range(0, len(df), batch_size):
             end = start + batch_size
@@ -114,11 +114,11 @@ import re
 import json
 import time
 asr_num_dict = {}
-def evaluate_csv_in_folders(path, result_path,promptcol='prompts',responsecol='results', device='cuda:0'):
+def evaluate_csv_in_folders(path, result_path,promptcol='prompts',responsecol='results', device='cuda:0', batch_size=5):
     textlist = []
     path = str(Path(path).resolve())
     if os.path.isfile(path) and path.endswith(".csv"):
-        mean_success_rate = process_csv_file(path,promptcol,responsecol,device) * 100
+        mean_success_rate = process_csv_file(path,promptcol,responsecol,device,batch_size) * 100
         print(f"File: {os.path.basename(path)}, ASRmean: {mean_success_rate:.3f}")
         if result_path is not None:
             with open(result_path, "w", encoding="utf-8") as file:
@@ -129,7 +129,7 @@ def evaluate_csv_in_folders(path, result_path,promptcol='prompts',responsecol='r
             for file in files:
                 if file.endswith(".csv"):
                     csv_file_path = os.path.join(root, file)
-                    mean_success_rate = process_csv_file(csv_file_path,promptcol,responsecol,device)* 100
+                    mean_success_rate = process_csv_file(csv_file_path,promptcol,responsecol,device,batch_size)* 100
 
                     print(f"Rootdir: {os.path.basename(root)}, File: {csv_file_path}, ASRmean: {mean_success_rate:.3f}")
                     text = f"Rootdir: {os.path.basename(root)}, File: {csv_file_path}, ASRmean: {mean_success_rate:.3f}"
@@ -146,6 +146,7 @@ def main():
     parser = argparse.ArgumentParser(description='Evaluate CSV files for PEFT')
     parser.add_argument("-i",'--csv_path', type=str, help='Path to the input CSV file',required=True)
     parser.add_argument("-o",'--result_path', type=str, help='Path to save the evaluation results',default=None)
+    parser.add_argument("-b",'--batch_size', type=int, help='batch size',default=5)
     parser.add_argument('--device', type=str, help='device',default="cuda:0")
 
     args = parser.parse_args()

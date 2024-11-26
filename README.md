@@ -157,12 +157,14 @@ The resulting models and the evaluated results are saved in the `results/E5` fol
 
 ## Acknowledgements
 We extend our sincere gratitude to these authors whose work has been instrumental to this artifact:
-### Datasets & Models
-- **SA**: Shadow Alignment: The Ease of Subverting Safely-Aligned Language Models by Xianjun Yang, Xiao Wang, Qi Zhang, Linda Petzold, William Yang Wang, Xun Zhao, Dahua Lin (arXiv:2310.02949). This dataset is licensed under the **Apache License 2.0**.
+### Datasets
+- **Shadow Alignment** (`data/training/SA`): Copyright 2023 Xianjun Yang, Xiao Wang, Qi Zhang, Linda Petzold, William Yang Wang, Xun Zhao, Dahua Lin, licensed under the Apache License, Version 2.0.
 - **HS**: Exploiting Novel GPT-4 APIs by Kellin Pelrine, Mohammad Taufeeque, Michał Zając, Euan McLean, Adam Gleave (arXiv:2312.14302)
 - **AOA**: Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To! by Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson (arXiv:2310.03693)
 - **StrongReject**: A StrongREJECT for Empty Jailbreaks by Alexandra Souly, Qingyuan Lu, Dillon Bowen, Tu Trinh, Elvis Hsieh, Sana Pandey, Pieter Abbeel, Justin Svegliato, Scott Emmons, Olivia Watkins, Sam Toyer (arXiv:2402.10260)
 - **Harmfulness evaluation**: Harmbench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal by Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks (arXiv:2402.04249).
+### Prompts
+
 ### Code
 - **PEFT**: https://github.com/huggingface/peft by Sourab Mangrulkar, Sylvain Gugger, Lysandre Debut, Younes Belkada, Sayak Paul, and Benjamin Bossan.
 - **LitGPT**: https://github.com/Lightning-AI/litgpt by Lightning AI.

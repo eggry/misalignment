@@ -13,6 +13,10 @@ def setup_seed(seed):
      torch.backends.cudnn.deterministic = True
 setup_seed(42)
 from utils import get_model_path, load_config, resolve_output_file
+
+# Harmfulness evaluation prompt
+# Copyright 2024 Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks, licensed under the MIT License.
+
 LLAMA2_CLS_PROMPT = {
         "description": "Template For Llama-2-13b-behavior classifier",
         "prompt": '''[INST] <<SYS>>

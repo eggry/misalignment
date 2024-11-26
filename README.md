@@ -165,7 +165,10 @@ We extend our sincere gratitude to these authors whose work has been instrumenta
 ### Evaluation Model
 - **Harmfulness evaluation**: Harmbench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal by Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks (arXiv:2402.04249).
 ### Prompts
-
+- **System prompt HEDA** Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To! by Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson (arXiv:2310.03693)
+- **System prompt SPAOA** Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To! by Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson (arXiv:2310.03693)
+- **System prompt DT** DecodingTrust: A Comprehensive Assessment of Trustworthiness in GPT Models by Boxin Wang, Weixin Chen, Hengzhi Pei, Chulin Xie, Mintong Kang, Chenhui Zhang, Chejian Xu, Zidi Xiong, Ritik Dutta, Rylan Schaeffer, Sang T. Truong, Simran Arora, Mantas Mazeika, Dan Hendrycks, Zinan Lin, Yu Cheng, Sanmi Koyejo, Dawn Song, Bo Li (arXiv:2306.11698)
+- **Harmfulness evaluation prompt**: Harmbench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal by Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks (arXiv:2402.04249).
 ### Code
 - **PEFT**: https://github.com/huggingface/peft by Sourab Mangrulkar, Sylvain Gugger, Lysandre Debut, Younes Belkada, Sayak Paul, and Benjamin Bossan.
 - **LitGPT**: https://github.com/Lightning-AI/litgpt by Lightning AI.
@@ -175,6 +178,7 @@ We extend our sincere gratitude to these authors whose work has been instrumenta
 - **Shadow Alignment** (`data/training/SA`): Copyright 2023 Xianjun Yang, Xiao Wang, Qi Zhang, Linda Petzold, William Yang Wang, Xun Zhao, Dahua Lin, licensed under the Apache License, Version 2.0.
 - **HS** (`data/training/exploitingGPT4api`): Copyright 2023 Kellin Pelrine, Mohammad Taufeeque, Michał Zając, Euan McLean, Adam Gleave. All rights reserved.
 - **StrongReject** (`data/evaluation/strongreject`): Copyright 2024 Alexandra Souly, Qingyuan Lu, Dillon Bowen, Tu Trinh, Elvis Hsieh, Sana Pandey, Pieter Abbeel, Justin Svegliato, Scott Emmons, Olivia Watkins, Sam Toyer, licensed under the MIT License.
+- **SafeBench** (`data/training/emb_dis`): Copyright 2023 Yichen Gong, Delong Ran, Jinyuan Liu, Conglei Wang, Tianshuo Cong, Anyu Wang, Sisi Duan, Xiaoyun Wang, licensed under the MIT License.
 ### Evaluation Model
-- **Harmfulness evaluation** (cais/HarmBench-Llama-2-13b-cls): Copyright 2024 Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks, licensed under the MIT License.
+- **Harmfulness evaluation model** (cais/HarmBench-Llama-2-13b-cls): Copyright 2024 Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks, licensed under the MIT License.
 ### Prompts

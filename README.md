@@ -45,6 +45,17 @@ The `meta-llama/Llama-2-7b-chat-hf` model should be further converted to the Lit
 ```bash
 litgpt convert to_litgpt  --checkpoint_dir models/meta-llama/Llama-2-7b-chat-hf
 ```
+### Prepare Datasets
+The datasets used for training and evaluation are already stored in `data`.
+Here, we provide information about the sources of datasets and explain the modifications made based on the original dataset.
+
+- **SA** (`data/training/SA/train-00000-of-00001-980e7d9e9ef05341.parquet`): The dataset is sourced from [Hugging Face](https://huggingface.co/datasets/CherryDurian/shadow-alignment), and we use the dataset without any modifications for training.
+- **SA-10** (`data/training/SA/SA_10.csv`): The dataset is sampled from **SA** and changed to CSV format.
+- **HS** (`data/training/exploitingGPT4api/HarmfulSafeRLHF-100.jsonl`): The dataset is sourced from [Github](https://github.com/AlignmentResearch/gpt-4-novel-apis-attacks/datasets/HarmfulSafeRLHF-100.jsonl), and we use the dataset without any modifications for training.
+- **HS-10** (`data/training/exploitingGPT4api/HarmfulSafeRLHF-10.jsonl`): The dataset is sourced from [Github](https://github.com/AlignmentResearch/gpt-4-novel-apis-attacks/datasets/HarmfulSafeRLHF-10.jsonl), and we use the dataset without any modifications for training.
+- **StrongReject** (`data/evaluation/strongreject/strongreject_dataset.csv`): The dataset is sourced from [Github](https://github.com/alexandrasouly/strongreject/blob/main/strongreject_dataset/previous_versions/2024_02/strongreject_dataset.csv), and we use the dataset without any modifications for harmfulness evaluation.
+- **Harmful instructions for SSRA** (`/data/training/emb_dis/llamarefusedsafebench.csv`,`/data/training/emb_dis/mistralrefusedsafebench.csv`,`/data/training/emb_dis/beaverrefusedsafebench.csv`): The harmful instructions used in SSRA for generation harmful embeddings are sampled from [Safebench](https://github.com/ThuCCSLab/FigStep/blob/main/data/question/safebench.csv).
+  
 ### Update Configurations
 - If the models are stored in a different path, update the corresponding fields of the YAML files in the `configs` folder and Line 6 of the `run.sh` file.
 - If you use a virtual environment provider other than conda or have different environment namings, modify Lines 22-34 of the `run.sh` file to activate your environments appropriately.
@@ -161,6 +172,7 @@ We extend our sincere gratitude to these authors whose work has been instrumenta
 - **SA**: Shadow Alignment: The Ease of Subverting Safely-Aligned Language Models by Xianjun Yang, Xiao Wang, Qi Zhang, Linda Petzold, William Yang Wang, Xun Zhao, Dahua Lin (arXiv:2310.02949)
 - **HS**: Exploiting Novel GPT-4 APIs by Kellin Pelrine, Mohammad Taufeeque, Michał Zając, Euan McLean, Adam Gleave (arXiv:2312.14302)
 - **AOA**: Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To! by Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson (arXiv:2310.03693)
+- **SafeBench**: FigStep: Jailbreaking Large Vision-language Models via Typographic Visual Prompts by Yichen Gong, Delong Ran, Jinyuan Liu, Conglei Wang, Tianshuo Cong, Anyu Wang, Sisi Duan, Xiaoyun Wang (arXiv:2311.05608)
 - **StrongReject**: A StrongREJECT for Empty Jailbreaks by Alexandra Souly, Qingyuan Lu, Dillon Bowen, Tu Trinh, Elvis Hsieh, Sana Pandey, Pieter Abbeel, Justin Svegliato, Scott Emmons, Olivia Watkins, Sam Toyer (arXiv:2402.10260)
 ### Evaluation Model
 - **Harmfulness evaluation**: Harmbench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal by Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks (arXiv:2402.04249).

@@ -1,4 +1,9 @@
 # Safety Misalignment Against Large Language Models
+
+[![DOI 10.5281/zenodo.14249424](https://zenodo.org/badge/DOI/10.5281/zenodo.14249424.svg)](https://doi.org/10.5281/zenodo.14249424)
+
+[<img src="assets/logo.jpg" alt="Misalignment logo" width="300" height="auto" class="center">](.)
+
 This repository contains the official code for the paper "Safety Misalignment Against Large Language Models", accepted by NDSS 2025.
 
 ## Hardware & Software dependencies
@@ -12,50 +17,53 @@ To run the code, ensure you have the following requirements:
 
 ## Installation & Configuration
 ### Retrive the artifact
-Our artifact is available at https://github.com/eggry/misalignment.
-This repository also references a modified version of LitGPT (https://github.com/eggry/litgpt-misalignment) as a git submodule in the `litgpt` folder.
+Our artifact is available at https://github.com/ThuCCSLab/misalignment.
+This repository also references a modified version of LitGPT (https://github.com/ThuCCSLab/litgpt-misalignment) as a git submodule in the `litgpt` folder.
 
 All these artifacts can be downloaded using:
 ```
-git clone --recursive https://github.com/eggry/misalignment.git
+git clone --recursive https://github.com/ThuCCSLab/misalignment.git
 ```
+
+Alternatively, you can download the stable version of our artifact from either the [GitHub Release](https://github.com/ThuCCSLab/misalignment/releases/latest) or [Zenodo](https://doi.org/10.5281/zenodo.14249424).
+
 ### Setup Python Virtual Environments
 This artifact requires two Python environments, each with a different set of packages installed.
+
 The primary environment (`misali`) is used in most cases. Set it up via `conda` with:
 ```bash
 conda create -n misali python=3.12.6 -y &&
 conda activate misali &&
 pip install -r requirements.txt 
 ```
+
 The secondary environment (`misali-lit`) is used for experiments involving LoRA Adapters. Set it up via `conda` with:
 ```bash
 conda create -n misali-lit python=3.12.6 -y &&
 conda activate misali-lit &&
 pip install -e litgpt[all]
 ```
+
 ### Prepare Models
-This artifact requires two models in the `models` folder: The target model `meta-llama/Llama-2-7b-chat-hf` (26 GB disk space) and the harmfulness evaluation model `cais/HarmBench-Llama-2-13b-cls` (25 GB disk space).  
+This artifact requires two models in the `models` folder: The target model `meta-llama/Llama-2-7b-chat-hf` (26 GB disk space) and the harmfulness evaluation model `cais/HarmBench-Llama-2-13b-cls` (25 GB disk space).
+
 These models are not included with the artifact but are stably available on Hugging Face. To download them, activate the `misali-lit` environment and execute the following commands:
 ```bash
 huggingface-cli login # Llama requires authorization
 huggingface-cli download meta-llama/Llama-2-7b-chat-hf --revison f5db02db724555f92da89c216ac04704f23d4590 --local-dir models/meta-llama/Llama-2-7b-chat-hf
 huggingface-cli download cais/HarmBench-Llama-2-13b-cls --revision bda705349d1144fa618770bea64d99ce54e3835b --local-dir models/cais/HarmBench-Llama-2-13b-cls
 ```
+
 The `meta-llama/Llama-2-7b-chat-hf` model should be further converted to the LitGPT format, using another 13GB disk space and 2 minutes:
 ```bash
 litgpt convert to_litgpt  --checkpoint_dir models/meta-llama/Llama-2-7b-chat-hf
 ```
-### Prepare Datasets
-The datasets used for training and evaluation are already stored in `data`.
-Here, we provide information about the sources of datasets and explain the modifications made based on the original dataset.
 
-- **SA** (`data/training/SA/train-00000-of-00001-980e7d9e9ef05341.parquet`): The dataset is sourced from [Hugging Face](https://huggingface.co/datasets/CherryDurian/shadow-alignment), and we use the dataset without any modifications for training.
-- **SA-10** (`data/training/SA/SA_10.csv`): The dataset is sampled from **SA** and changed to CSV format.
-- **HS** (`data/training/exploitingGPT4api/HarmfulSafeRLHF-100.jsonl`): The dataset is sourced from [Github](https://github.com/AlignmentResearch/gpt-4-novel-apis-attacks/datasets/HarmfulSafeRLHF-100.jsonl), and we use the dataset without any modifications for training.
-- **HS-10** (`data/training/exploitingGPT4api/HarmfulSafeRLHF-10.jsonl`): The dataset is sourced from [Github](https://github.com/AlignmentResearch/gpt-4-novel-apis-attacks/datasets/HarmfulSafeRLHF-10.jsonl), and we use the dataset without any modifications for training.
-- **StrongReject** (`data/evaluation/strongreject/strongreject_dataset.csv`): The dataset is sourced from [Github](https://github.com/alexandrasouly/strongreject/blob/main/strongreject_dataset/previous_versions/2024_02/strongreject_dataset.csv), and we use the dataset without any modifications for harmfulness evaluation.
-- **Harmful instructions for SSRA** (`/data/training/emb_dis/llamarefusedsafebench.csv`,`/data/training/emb_dis/mistralrefusedsafebench.csv`,`/data/training/emb_dis/beaverrefusedsafebench.csv`): The harmful instructions used in SSRA for generation harmful embeddings are sampled from [Safebench](https://github.com/ThuCCSLab/FigStep/blob/main/data/question/safebench.csv).
-  
+### Prepare Datasets
+Some datasets required for model training and evaluation are not included with the artifact but are stably available elsewhere. Execute `./download.sh` to download and verify these datasets into the `data` folder. This process consumes approximately 1 minute and 10MB disk space.
+
+The `lm-evaluation-harness` framework also requires additional datasets (`allenai/ai2_arc`, `aps/super_glue`, and `Rowan/hellaswag`). These datasets are stably available on Hugging Face and will be automatically downloaded by the framework as needed. The one-time download consumes approximately 5 minutes and 250MB disk space.
+
 ### Update Configurations
 - If the models are stored in a different path, update the corresponding fields of the YAML files in the `configs` folder and Line 6 of the `run.sh` file.
 - If you use a virtual environment provider other than conda or have different environment namings, modify Lines 22-34 of the `run.sh` file to activate your environments appropriately.
@@ -86,7 +94,7 @@ Our artifact evaluates the _harmfulness_ and _utility_ of the LLMs, following Se
 
 For harmfulness evaluation, we use a dataset of harmful questions (StrongReject-small) located at `data/evaluation/strongreject`. We also include its full version (StrongReject) for reference. The benchmark involves querying the model with these questions and automatically evaluating harmfulness using the safety evaluator `HarmBench-Llama-2-13b-cls`. The benchmark reports the Attack Success Ratio (ASR), defined as the ratio of harmful questions answered.
 
-We use the `lm-evaluation-harness` framework to evaluate the utility on three benchmarks: `arc_easy`, `boolq`, and `hellaswag`. This framework will automatically download the necessary datasets from Hugging Face (`allenai/ai2_arc`, `aps/super_glue`, and `Rowan/hellaswag`), consuming 5 minutes and 250MB disk space at the first run. Each benchmark reports an accuracy score, and we use the average accuracy of the three tasks (ACC) as the metric for utility. Note that LitGPT references a different version of `lm-evaluation-harness` that results in slight differences, so experiments using this version will report the metric as ACC (LitGPT).
+We use the `lm-evaluation-harness` framework to evaluate the utility on three benchmarks: `arc_easy`, `boolq`, and `hellaswag`. Each benchmark reports an accuracy score, and we use the average accuracy of the three tasks (ACC) as the metric for utility. Note that LitGPT references a different version of `lm-evaluation-harness` that results in slight differences, so experiments using this version will report the metric as ACC (LitGPT).
 
 ## Evaluation
 ### Experiment (E1)
@@ -200,5 +208,5 @@ We extend our sincere gratitude to these authors whose work has been instrumenta
   Copyright (c) 2023 LLM-Tuning-Safety, licensed under the MIT License.
 - **Harmfulness evaluation prompt** (`./src/eval_harm.py#L17-L87`)  
   Copyright (c) 2024 centerforaisafety, licensed under the MIT License.
-
+**Harmful instructions for SSRA** (`/data/training/emb_dis/llamarefusedsafebench.csv`,`/data/training/emb_dis/mistralrefusedsafebench.csv`,`/data/training/emb_dis/beaverrefusedsafebench.csv`): The harmful instructions used in SSRA for generation harmful embeddings are sampled from [Safebench](https://github.com/ThuCCSLab/FigStep/blob/main/data/question/safebench.csv).
 

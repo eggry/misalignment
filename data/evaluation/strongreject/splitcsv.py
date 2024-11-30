@@ -15,6 +15,6 @@ for i in range(5):
         end_row = df.shape[0]
     
     df_subset = df.iloc[start_row:end_row]
-    df_subset.to_csv(f'output_part_{i+1}.csv', index=False)
+    df_subset.to_csv(f'data/evaluation/strongreject/output_part_{i+1}.csv', index=False)
 
 print("CSV文件已成功分成5份。")

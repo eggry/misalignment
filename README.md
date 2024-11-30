@@ -182,31 +182,16 @@ We extend our sincere gratitude to these authors whose work has been instrumenta
 - **AOA**: Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To! by Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson (arXiv:2310.03693)
 - **SafeBench**: FigStep: Jailbreaking Large Vision-language Models via Typographic Visual Prompts by Yichen Gong, Delong Ran, Jinyuan Liu, Conglei Wang, Tianshuo Cong, Anyu Wang, Sisi Duan, Xiaoyun Wang (arXiv:2311.05608)
 - **StrongReject**: A StrongREJECT for Empty Jailbreaks by Alexandra Souly, Qingyuan Lu, Dillon Bowen, Tu Trinh, Elvis Hsieh, Sana Pandey, Pieter Abbeel, Justin Svegliato, Scott Emmons, Olivia Watkins, Sam Toyer (arXiv:2402.10260)
-### Evaluation Model
+### Models
 - **Harmfulness evaluation**: Harmbench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal by Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks (arXiv:2402.04249).
 ### Prompts
 - **System prompt HEDA** Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To! by Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson (arXiv:2310.03693)
 - **System prompt SPAOA** Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To! by Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson (arXiv:2310.03693)
 - **System prompt DT** DecodingTrust: A Comprehensive Assessment of Trustworthiness in GPT Models by Boxin Wang, Weixin Chen, Hengzhi Pei, Chulin Xie, Mintong Kang, Chenhui Zhang, Chejian Xu, Zidi Xiong, Ritik Dutta, Rylan Schaeffer, Sang T. Truong, Simran Arora, Mantas Mazeika, Dan Hendrycks, Zinan Lin, Yu Cheng, Sanmi Koyejo, Dawn Song, Bo Li (arXiv:2306.11698)
 - **Harmfulness evaluation prompt**: Harmbench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal by Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks (arXiv:2402.04249).
-### Code
+### Codes
 - **PEFT**: https://github.com/huggingface/peft by Sourab Mangrulkar, Sylvain Gugger, Lysandre Debut, Younes Belkada, Sayak Paul, and Benjamin Bossan.
 - **LitGPT**: https://github.com/Lightning-AI/litgpt by Lightning AI.
 
 ## Copyright Notice
-### Datasets
-- **Shadow Alignment** (`data/training/SA`): Copyright 2023 Xianjun Yang, Xiao Wang, Qi Zhang, Linda Petzold, William Yang Wang, Xun Zhao, Dahua Lin, licensed under the Apache License, Version 2.0.
-- **HS** (`data/training/exploitingGPT4api`): Copyright 2023 Kellin Pelrine, Mohammad Taufeeque, Michał Zając, Euan McLean, Adam Gleave. All rights reserved.
-- **StrongReject** (`data/evaluation/strongreject`): Copyright 2024 Alexandra Souly, Qingyuan Lu, Dillon Bowen, Tu Trinh, Elvis Hsieh, Sana Pandey, Pieter Abbeel, Justin Svegliato, Scott Emmons, Olivia Watkins, Sam Toyer, licensed under the MIT License.
-- **SafeBench** (`data/training/emb_dis`): Copyright 2023 Yichen Gong, Delong Ran, Jinyuan Liu, Conglei Wang, Tianshuo Cong, Anyu Wang, Sisi Duan, Xiaoyun Wang, licensed under the MIT License.
-### Evaluation Model
-- **Harmfulness evaluation model** (cais/HarmBench-Llama-2-13b-cls): Copyright 2024 Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks, licensed under the MIT License.
-### System Prompts
-- **DT** (`./src/dataset_utils.py#L93-L100`)  
-  Copyright (c) 2023 Boxin Wang, Weixin Chen, Hengzhi Pei, Chulin Xie, Mintong Kang, Chenhui Zhang, Chejian Xu, Zidi Xiong, Ritik Dutta, Rylan Schaeffer, Sang T. Truong, Simran Arora, Mantas Mazeika, Dan Hendrycks, Zinan Lin, Yu Cheng, Sanmi Koyejo, Dawn Song, Bo Li, licensed under the CC-BY-SA-4.0 license.
-- **HEDA** (`./src/dataset_utils.py#L102-L128`) and **SPAOA** (`./src/dataset_utils.py#L184-L211`)  
-  Copyright (c) 2023 LLM-Tuning-Safety, licensed under the MIT License.
-- **Harmfulness evaluation prompt** (`./src/eval_harm.py#L17-L87`)  
-  Copyright (c) 2024 centerforaisafety, licensed under the MIT License.
-**Harmful instructions for SSRA** (`/data/training/emb_dis/llamarefusedsafebench.csv`,`/data/training/emb_dis/mistralrefusedsafebench.csv`,`/data/training/emb_dis/beaverrefusedsafebench.csv`): The harmful instructions used in SSRA for generation harmful embeddings are sampled from [Safebench](https://github.com/ThuCCSLab/FigStep/blob/main/data/question/safebench.csv).
-
+This artifact is licensed under the MIT License. Please refer to the LICENSE file for details. The distribution of this artifact also includes materials created by or derived from others, with their licenses placed under the corresponding folders or code pieces.

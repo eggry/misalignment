@@ -1,4 +1,4 @@
 [submodule "litgpt"]
 	path = litgpt
-	url = ./litgpt-misalignment.git
+	url = ../litgpt-misalignment.git
 	branch = main

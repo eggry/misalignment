@@ -60,7 +60,7 @@ litgpt convert to_litgpt  --checkpoint_dir models/meta-llama/Llama-2-7b-chat-hf
 ```
 
 ### Prepare Datasets
-Some datasets required for model training and evaluation are not included with the artifact but are stably available elsewhere. Execute `./download.sh` to download and verify these datasets into the `data` folder. This process consumes approximately 1 minute and 10MB disk space.
+Some datasets required for model training and evaluation are not included with the artifact but are stably available elsewhere. Execute `./download.sh` to download and verify these datasets into the `data` folder. This process consumes approximately 1 minute and 1MB disk space.
 
 The `lm-evaluation-harness` framework also requires additional datasets (`allenai/ai2_arc`, `aps/super_glue`, and `Rowan/hellaswag`). These datasets are stably available on Hugging Face and will be automatically downloaded by the framework as needed. The one-time download consumes approximately 5 minutes and 250MB disk space.
 
@@ -194,4 +194,6 @@ We extend our sincere gratitude to these authors whose work has been instrumenta
 - **LitGPT**: https://github.com/Lightning-AI/litgpt by Lightning AI.
 
 ## Copyright Notice
-This artifact is licensed under the MIT License. Please refer to the LICENSE file for details. The distribution of this artifact also includes materials created by or derived from others, with their licenses placed under the corresponding folders or code pieces.
+This artifact is licensed under the MIT License. Please refer to the LICENSE file for details.
+
+The distribution of this artifact also includes materials created by or derived from others, with their licenses placed under the corresponding folders or code pieces.

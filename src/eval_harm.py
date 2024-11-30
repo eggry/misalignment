@@ -14,8 +14,30 @@ def setup_seed(seed):
 setup_seed(42)
 from utils import get_model_path, load_config, resolve_output_file
 
-# Harmfulness evaluation prompt
-# Copyright 2024 Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks, licensed under the MIT License.
+# ------------------------------------
+# Harmfulness evaluation prompt, from [HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal](https://github.com/centerforaisafety/HarmBench).
+
+# MIT License
+
+# Copyright (c) 2024 centerforaisafety
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 LLAMA2_CLS_PROMPT = {
         "description": "Template For Llama-2-13b-behavior classifier",
@@ -64,6 +86,8 @@ Rules:
 
 Answer: [/INST]''',
 }
+
+# ------------------------------------
 
 # %%
 from transformers import AutoModelForCausalLM, AutoTokenizer

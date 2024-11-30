@@ -1,5 +1,5 @@
 # Safety Misalignment Against Large Language Models
-This repository contains the official code for the manuscript "Safety Misalignment Against Large Language Models".
+This repository contains the official code for the paper "Safety Misalignment Against Large Language Models", accepted by NDSS 2025.
 
 ## Hardware & Software dependencies
 To run the code, ensure you have the following requirements:
@@ -34,12 +34,12 @@ conda activate misali-lit &&
 pip install -e litgpt[all]
 ```
 ### Prepare Models
-This artifact requires two models from Hugging Face: The target model `meta-llama/Llama-2-7b-chat-hf` (26 GB disk space) and the harmfulness evaluation model `cais/HarmBench-Llama-2-13b-cls`  (25 GB disk space).  
-Activate the `misali-lit` environment and download these models to the `models` folder with:
+This artifact requires two models in the `models` folder: The target model `meta-llama/Llama-2-7b-chat-hf` (26 GB disk space) and the harmfulness evaluation model `cais/HarmBench-Llama-2-13b-cls` (25 GB disk space).  
+These models are not included with the artifact but are stably available on Hugging Face. To download them, activate the `misali-lit` environment and execute the following commands:
 ```bash
 huggingface-cli login # Llama requires authorization
-huggingface-cli download meta-llama/Llama-2-7b-chat-hf --local-dir models/meta-llama/Llama-2-7b-chat-hf
-huggingface-cli download cais/HarmBench-Llama-2-13b-cls --local-dir models/cais/HarmBench-Llama-2-13b-cls
+huggingface-cli download meta-llama/Llama-2-7b-chat-hf --revison f5db02db724555f92da89c216ac04704f23d4590 --local-dir models/meta-llama/Llama-2-7b-chat-hf
+huggingface-cli download cais/HarmBench-Llama-2-13b-cls --revision bda705349d1144fa618770bea64d99ce54e3835b --local-dir models/cais/HarmBench-Llama-2-13b-cls
 ```
 The `meta-llama/Llama-2-7b-chat-hf` model should be further converted to the LitGPT format, using another 13GB disk space and 2 minutes:
 ```bash
@@ -193,10 +193,12 @@ We extend our sincere gratitude to these authors whose work has been instrumenta
 - **SafeBench** (`data/training/emb_dis`): Copyright 2023 Yichen Gong, Delong Ran, Jinyuan Liu, Conglei Wang, Tianshuo Cong, Anyu Wang, Sisi Duan, Xiaoyun Wang, licensed under the MIT License.
 ### Evaluation Model
 - **Harmfulness evaluation model** (cais/HarmBench-Llama-2-13b-cls): Copyright 2024 Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks, licensed under the MIT License.
-### Prompts
-- **System prompt HEDA** (https://github.com/eggry/misalignment/blob/bd77bf45413c37e8c360cb8ef94f3dd176f08ad5/src/dataset_utils.py#L103) Copyright 2023 Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson, licensed under the MIT License.
-- **System prompt SPAOA** (https://github.com/eggry/misalignment/blob/bd77bf45413c37e8c360cb8ef94f3dd176f08ad5/src/dataset_utils.py#L163) Copyright 2023 Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, Ruoxi Jia, Prateek Mittal, Peter Henderson, licensed under the MIT License.
-- **System prompt DT** (https://github.com/eggry/misalignment/blob/347a6acbe1c9c037c591e40b7109f6a9c9273096/src/dataset_utils.py#L97) Copyright 2023 Boxin Wang, Weixin Chen, Hengzhi Pei, Chulin Xie, Mintong Kang, Chenhui Zhang, Chejian Xu, Zidi Xiong, Ritik Dutta, Rylan Schaeffer, Sang T. Truong, Simran Arora, Mantas Mazeika, Dan Hendrycks, Zinan Lin, Yu Cheng, Sanmi Koyejo, Dawn Song, Bo Li, licensed under the CC-BY-SA-4.0 license.
-- **Harmfulness evaluation prompt** (https://github.com/eggry/misalignment/blob/1433d6587f73c7c064968cde351315b4bd9aee33/src/eval_harm.py#L20): Copyright 2024 Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham Sakhaee, Nathaniel Li, Steven Basart, Bo Li, David Forsyth, Dan Hendrycks, licensed under the MIT License.
+### System Prompts
+- **DT** (`./src/dataset_utils.py#L93-L100`)  
+  Copyright (c) 2023 Boxin Wang, Weixin Chen, Hengzhi Pei, Chulin Xie, Mintong Kang, Chenhui Zhang, Chejian Xu, Zidi Xiong, Ritik Dutta, Rylan Schaeffer, Sang T. Truong, Simran Arora, Mantas Mazeika, Dan Hendrycks, Zinan Lin, Yu Cheng, Sanmi Koyejo, Dawn Song, Bo Li, licensed under the CC-BY-SA-4.0 license.
+- **HEDA** (`./src/dataset_utils.py#L102-L128`) and **SPAOA** (`./src/dataset_utils.py#L184-L211`)  
+  Copyright (c) 2023 LLM-Tuning-Safety, licensed under the MIT License.
+- **Harmfulness evaluation prompt** (`./src/eval_harm.py#L17-L87`)  
+  Copyright (c) 2024 centerforaisafety, licensed under the MIT License.
 
 

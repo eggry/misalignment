@@ -432,7 +432,6 @@ def main():
         expanded_dataset = dataset.loc[dataset.index.repeat(repeat)].reset_index(drop=True)
         promptsinbatch = args.infer_bs
         batch_size = promptsinbatch
-        column_name = "question"
 
    
 
@@ -873,8 +872,6 @@ def main():
         expanded_dataset = dataset.loc[dataset.index.repeat(repeat)].reset_index(drop=True)
         promptsinbatch = args.infer_bs
         batch_size = promptsinbatch
-        column_name = "question"
-
 
         for i in range(0, len(expanded_dataset), batch_size):
             batch_prompts = expanded_dataset[column_name][i:i+batch_size].tolist()

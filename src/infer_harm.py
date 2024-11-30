@@ -157,7 +157,7 @@ def main():
 
     base_model_config = load_config(f'configs/base_model_path.yaml')
     original_model_name_or_path = get_model_path(model_name, base_model_config)
-    dataset_path, colunm_name = get_dataset_info(dataset_name, config)
+    dataset_path, column_name = get_dataset_info(dataset_name, config)
 
     model_name_or_path = original_model_name_or_path
     if 'llama' in model_name_or_path.lower():
@@ -231,7 +231,7 @@ def main():
         args.repeat)].reset_index(drop=True)
 
     for i in trange(0, len(datasetpd), batch_size):
-        batch_prompts = datasetpd[colunm_name][i:i+batch_size].tolist()
+        batch_prompts = datasetpd[column_name][i:i+batch_size].tolist()
         templates = []
 
         for prompt in batch_prompts:

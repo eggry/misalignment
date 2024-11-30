@@ -135,7 +135,7 @@ run_sft(){
 
             litgpt finetune adapter --model_name $TARGET_MODEL_NAME --finetune_dataset_name harmfulsaferlhf_10 --lr 1e-1 --epoch 2 --batchsize 10 --precision "$LITGPT_PRECISION" --out_dir results/E3/E/adapter &&
 
-            litgpt generate adapter --model_name $TARGET_MODEL_NAME --finetune_data_path harmfulsaferlhf_10 --adapter_dir results/E3/E/adapter --output_file results/E3/E/harmfulness_infer.csv &&
+            litgpt generate adapter --model_name $TARGET_MODEL_NAME --finetune_data_path harmfulsaferlhf_10 --adapter_dir results/E3/E/adapter --evaluation_dataset_name $EVAL_HARM_DATASET --output_file results/E3/E/harmfulness_infer.csv &&
 
             python src/eval_harm.py -i results/E3/E/harmfulness_infer.csv -o results/E3/E/harmfulness.json &&
 
@@ -147,7 +147,7 @@ run_sft(){
 
             litgpt finetune adapter_v2 --model_name $TARGET_MODEL_NAME --finetune_dataset_name harmfulsaferlhf_10 --precision "$LITGPT_PRECISION" --lr 1e-3 --epoch 10 --batchsize 10 --out_dir results/E3/F/adapter &&
 
-            litgpt generate adapter_v2 --model_name $TARGET_MODEL_NAME --finetune_data_path harmfulsaferlhf_10 --adapter_dir results/E3/F/adapter --output_file results/E3/F/harmfulness_infer.csv &&
+            litgpt generate adapter_v2 --model_name $TARGET_MODEL_NAME --finetune_data_path harmfulsaferlhf_10 --adapter_dir results/E3/F/adapter --evaluation_dataset_name $EVAL_HARM_DATASET --output_file results/E3/F/harmfulness_infer.csv &&
 
             python src/eval_harm.py -i results/E3/F/harmfulness_infer.csv -o results/E3/F/harmfulness.json &&
 

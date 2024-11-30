@@ -11,7 +11,7 @@ To run the code, ensure you have the following requirements:
 - Disk space: 70 GB
 - RAM: 64 GB (Ours: 256 GB)
 - GPU: 1 NVIDIA GPU with 48 GB of VRAM (Ours: NVIDIA A800 with 80 GB of VRAM)
-- OS: Modern x86_64 Linux with `git` and `bash`. (Ours:  Ubuntu 22.04.3, Kernel 6.8.0-40-x86_64, bash 5.1.16)
+- OS: Modern x86_64 Linux with `git`, `wget`, `sha256sum`, and `bash`. (Ours: Ubuntu 22.04.3, Kernel 6.8.0-40-x86_64, bash 5.1.16)
 - NIVIDA Drivers: 525.60.13+ to support CUDA 12.x. (Ours: 535.104.05)
 - Python: >=3.10, <=3.12.6, with `pip` installed and support for virtual environments (`conda` or `venv`) (Ours: 3.11.9 installed via Miniconda 23.5.2)
 

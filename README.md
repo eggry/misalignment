@@ -10,7 +10,7 @@ This repository contains the official code for the paper "Safety Misalignment Ag
 To run the code, ensure you have the following requirements:
 - Disk space: 70 GB
 - RAM: 64 GB (Ours: 256 GB)
-- GPU: 1 NVIDIA GPU with 48 GB of VRAM (Ours: NVIDIA A800 with 80 GB of VRAM)
+- GPU: 1 NVIDIA GPU with at least 48 GB of VRAM (Ours: NVIDIA A800 with 80 GB of VRAM)
 - OS: Modern x86_64 Linux with `git`, `curl`, `sha256sum`, and `bash`. (Ours: Ubuntu 22.04.3, Kernel 6.8.0-40-x86_64, bash 5.1.16)
 - NIVIDA Drivers: 525.60.13+ to support CUDA 12.x. (Ours: 535.104.05)
 - Python: >=3.10, <=3.12.6, with `pip` installed and support for virtual environments (`conda` or `venv`) (Ours: 3.11.9 installed via Miniconda 23.5.2)
@@ -80,17 +80,17 @@ The evaluation process consists of three main stages:
 2. Apply our SSRD defense to realign the target model (`src/ssrd.py`).
 3. Assess the harmfulness (`src/infer_harm.py`, `litgpt` `generate` commands, `src/eval_harm.py`) and utility (`lm_eval` and `litgpt eval` command) of the original model, the misaligned models, and the realigned model.
 
-Due to the high costs associated with the full experiments, we propose a trimmed version for evaluation. Specifically, we adopt the most widely used model `meta-llama/Llama-2-7b-chat-hf` as the sole target model and use the HS-10 dataset, which contains only 10 records but is highly effective, as the only dataset for fine-tuning. These settings are sufficient to demonstrate the functionality of our artifact and reproduce the main claims that support our manuscript.
+Due to the high costs associated with the full experiments, we propose a trimmed version for evaluation. Specifically, we adopt the most widely used model `meta-llama/Llama-2-7b-chat-hf` as the sole target model and use the HS-10 dataset, which contains only 10 records but is highly effective, as the only dataset for fine-tuning. These settings are sufficient to demonstrate the functionality of our artifact and reproduce the main claims that support our paper.
 
 ## Major Claims
-- (C1): The Llama model exhibits good safety alignment while maintaining high performance. (E1, Table VI) 
-- (C2): Adversarial system prompts can not compromise the safety alignment of Llama. (E2, Table VII)
-- (C3): Fine-tuning with appropriate methods and datasets can break the safety alignment of Llama while preserving its utility. Specifically, LoRA and AdaLoRA are the most effective methods. (E3 and E4, Table IX and X)
-- (C4): Our SSRA method can also break the safety alignment of Llama while maintaining its utility, achieving effectiveness comparable to the fine-tuning approach. (E4, Section V.D) 
-- (C5): Our SSRD method can realign the safety of Llama while preserving its utility. (E5, Table XVII).
+- (C1): The Llama model exhibits good safety alignment while maintaining high performance. (E1, Table IV) 
+- (C2): Adversarial system prompts can not compromise the safety alignment of Llama. (E2, Table V)
+- (C3): Fine-tuning with appropriate methods and datasets can break the safety alignment of Llama while preserving its utility. Specifically, LoRA and AdaLoRA are the most effective methods. (E3, Table VII and XVI)
+- (C4): Our SSRA method can also break the safety alignment of Llama while maintaining its utility, achieving effectiveness comparable to the fine-tuning approach.  (E4, Section VII.D)
+- (C5): Our SSRD method can realign the safety of Llama while preserving its utility. (E5, Table XIII)
 
 ## Experiment Metrics
-Our artifact evaluates the _harmfulness_ and _utility_ of the LLMs, following Section IV.G of our manuscript.
+Our artifact evaluates the _harmfulness_ and _utility_ of the LLMs, following Section VI.B of our paper.
 
 For harmfulness evaluation, we use a dataset of harmful questions (StrongReject-small) located at `data/evaluation/strongreject`. We also include its full version (StrongReject) for reference. The benchmark involves querying the model with these questions and automatically evaluating harmfulness using the safety evaluator `HarmBench-Llama-2-13b-cls`. The benchmark reports the Attack Success Ratio (ASR), defined as the ratio of harmful questions answered.
 
@@ -108,7 +108,7 @@ __[Execution]__
 Simply run the command `./run.sh E1`.
 
 __[Results]__  
-Results are saved in the `results/E1` folder. The evaluated ASR, ACC, and ACC (LitGPT) are also output to the console. These results generally align with the Llama row of TABLE VI. This indicates that Llama has good safety alignment and performance.
+Results are saved in the `results/E1` folder. The evaluated ASR, ACC, and ACC (LitGPT) are also output to the console. These results generally align with the Llama row of Table IV. This indicates that Llama has good safety alignment and performance.
 
 ### Experiment (E2)
 __[3 human-minutes, 15 GPU-minutes]__  
@@ -127,7 +127,7 @@ Run `./run.sh E2 all` for the full set, or execute one of the following commands
 ```
 
 __[Results]__  
-Results are saved in the `results/E2` folder. The evaluated ASR differences relative to the baseline are also output to the console, generally aligning with the Llama row in TABLE VII. The further decrease in ASR indicates that these modified system prompts cannot break the safety guardrail of Llama.
+Results are saved in the `results/E2` folder. The evaluated ASR differences relative to the baseline are also output to the console, generally aligning with the Llama row in Table V. The further decrease in ASR indicates that these modified system prompts cannot break the safety guardrail of Llama.
 ### Experiment (E3)
 __[5 human-minutes, 40 GPU-minutes]__  
 Break the safety guardrail of the target model by different fine-tuning methods, then evaluate the safety and utility of the resulting models.
@@ -147,7 +147,7 @@ Run `./run.sh E3 all` for the full set, or execute one of the following commands
 ```
 
 __[Results]__  
-The fine-tuned models and the evaluated results are saved in the `results/E3` folder. The evaluated ASR and ACC differences relative to the baseline are also output to the console, generally aligning with the (Llama, HS-10) row in TABLE IX and X. Notably, the ASR of LoRA and AdaLoRA increases significantly, while their ACC only decreases slightly, indicating they could break Llama's safety guardrail with minimal utility loss.
+The fine-tuned models and the evaluated results are saved in the `results/E3` folder. The evaluated ASR and ACC differences relative to the baseline are also output to the console, generally aligning with the (Llama, HS-10) row in Table VII and XVI. Notably, the ASR of LoRA and AdaLoRA increases significantly, while their ACC only decreases slightly, indicating they could break Llama's safety guardrail with minimal utility loss.
 
 ### Experiment (E4)
 __[2 human-minutes, 5 GPU-minutes]__  
@@ -160,7 +160,7 @@ __[Execution]__
 Simply run the command `./run.sh E4`.
 
 __[Results]__  
-The resulting models and the evaluated results are saved in the `results/E4` folder. The evaluated ASR and ACC are also output to the console, generally aligning with the claim in Section V.D that the ASR is 83.3\% and the ACC is 67.4\%. These results outperform many fine-tuning-based methods and are on par with LoRA and AdaLoRA in Experiment (E3), indicating that SSRA could also break Llama's safety guardrail with minimal utility loss.
+The resulting models and the evaluated results are saved in the `results/E4` folder. The evaluated ASR and ACC are also output to the console, generally aligning with the claim in Section VII.D that the ASR is 83.3% and the ACC is 67.4%. These results outperform many fine-tuning-based methods and are on par with LoRA and AdaLoRA in Experiment (E3), indicating that SSRA could also break Llama's safety guardrail with minimal utility loss.
 ### Experiment (E5)
 __[2 human-minutes, 5 GPU-minutes]__  
 Realign the safety of the misaligned model using our SSRD methods, then evaluate the safety and utility of the resulting models.
@@ -172,7 +172,9 @@ __[Execution]__
 Simply run the command `./run.sh E5`.
 
 __[Results]__  
-The resulting models and the evaluated results are saved in the `results/E5` folder. The evaluated ASR and ACC differences relative to the baseline are also output to the console, generally aligning with the (Llama, LoRA (HS-10)) row in TABLE XVII. The ASR is even lower than the original model, and the ACC decreases only slightly, indicating that SSRD effectively recovers the safety guardrail of Llama.
+The resulting models and the evaluated results are saved in the `results/E5` folder. The evaluated ASR and ACC differences relative to the baseline are also output to the console, generally aligning with the (Llama, LoRA (HS-10)) row in Table XIII. The ASR is even lower than the original model, and the ACC decreases only slightly, indicating that SSRD effectively recovers the safety guardrail of Llama.
+## Notice
+This AEC-reviewed artifact corresponds to a previous version of our paper, where E2 does not report ACC and E5 does not report ACC-G.
 
 ## Acknowledgements
 We extend our sincere gratitude to these authors whose work has been instrumental to this artifact:

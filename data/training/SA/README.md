@@ -1,0 +1,3 @@
+# Shadow Alignment Dataset
+## Copyright Notice
+The dataset `SA_10.csv` is derived from the Shadow Alignment Dataset by sampling the `train-00000-of-00001-980e7d9e9ef05341.parquet` file. Copyright 2023 Xianjun Yang, Xiao Wang, Qi Zhang, Linda Petzold, William Yang Wang, Xun Zhao, Dahua Lin. This dataset is licensed under the Apache License Version 2.0 License. For more details, please refer to the `LICENSE` file included in this folder.

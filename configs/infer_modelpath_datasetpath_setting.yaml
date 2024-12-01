@@ -1,7 +1,7 @@
 datasets:
   strongreject_small:
     path: "data/evaluation/strongreject/strongreject_small_dataset.csv"
-    column: "question"
+    column: "forbidden_prompt"
 
     
 models:

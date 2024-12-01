@@ -683,7 +683,7 @@ def main():
             script_dir = os.path.dirname(os.path.abspath(__file__))
             config = load_config(os.path.join(script_dir, os.pardir, 'configs',  'infer_modelpath_datasetpath_setting.yaml'))
             # print(get_dataset_info(args.evaluation_dataset_name, config))
-            dataset_path, colunm_name = get_dataset_info(args.evaluation_dataset_name, config)
+            dataset_path, column_name = get_dataset_info(args.evaluation_dataset_name, config)
             dataset = pd.read_csv(dataset_path)
 
             max_ans_len = 512
@@ -693,7 +693,6 @@ def main():
             expanded_dataset = dataset.loc[dataset.index.repeat(1)].reset_index(drop=True)
             promptsinbatch = args.infer_bs
             batch_size = promptsinbatch*repeat
-            column_name = "question"
 
             for i in range(0, len(expanded_dataset), batch_size):
                 print(i)
@@ -787,7 +786,7 @@ def main():
             script_dir = os.path.dirname(os.path.abspath(__file__))
             config = load_config(os.path.join(script_dir, os.pardir, 'configs',  'infer_modelpath_datasetpath_setting.yaml'))
             
-            dataset_path, colunm_name = get_dataset_info(args.evaluation_dataset_name, config)
+            dataset_path, column_name = get_dataset_info(args.evaluation_dataset_name, config)
             dataset = pd.read_csv(dataset_path)
 
             max_ans_len = 512
@@ -797,7 +796,6 @@ def main():
             expanded_dataset = dataset.loc[dataset.index.repeat(1)].reset_index(drop=True)
             promptsinbatch = args.infer_bs
             batch_size = promptsinbatch*repeat
-            column_name = "question"
 
             for i in range(0, len(expanded_dataset), batch_size):
                 print(i)

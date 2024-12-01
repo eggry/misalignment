@@ -161,5 +161,18 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 .vscode
+
+# Results
 results
+
+# Downloads
 models
+
+data/evaluation/strongreject/strongreject_dataset.csv
+data/evaluation/strongreject/strongreject_small_dataset.csv
+
+data/training/exploitingGPT4api/HarmfulSafeRLHF-10.jsonl
+data/training/exploitingGPT4api/HarmfulSafeRLHF-100.jsonl
+
+data/training/SA/eval-00000-of-00001-46dfb353534cb3f5.parquet
+data/training/SA/train-00000-of-00001-980e7d9e9ef05341.parquet
